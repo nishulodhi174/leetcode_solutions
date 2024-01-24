@@ -7,7 +7,6 @@ class Solution {
         for(int i=0;i<word2.length;i++){
             w2 = w2 + word2[i];
         }
-        System.out.println(w1+" , "+w2);
         if(w1.equals(w2)){
             return true;
         }else{
