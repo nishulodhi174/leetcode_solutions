@@ -1,9 +1,15 @@
 class Solution {
     public int pivotInteger(int n) {
-        int sum= n*(n+1)/2;
-        double a= Math.sqrt(sum);
+        int[] prefs = new int[n + 1];
+        for (int i = 1; i < n + 1; i++) {
+            prefs[i] = prefs[i - 1] + i;
+        }
 
-        if( a- Math.ceil(a)==0) return (int)a;
-        else return -1;
+        for (int i = 1; i < n + 1; i++) {
+            if (prefs[i] == prefs[n] - prefs[i - 1])
+                return i;
+        }
+
+        return -1;
     }
 }
