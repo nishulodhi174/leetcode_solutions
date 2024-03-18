@@ -13,13 +13,10 @@ class Solution {
                 hmap.put(s,list);
             }
         }
-
         List<List<String>> ans = new ArrayList<>();
         for (String s:hmap.keySet()){
             ans.add(hmap.get(s));
         }
-        
-
         return ans;
     }
 }
