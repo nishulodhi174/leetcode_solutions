@@ -1,14 +1,12 @@
 class Solution {
     public boolean isPalindrome(String s) {
+        s = s.toLowerCase();
         int left=0;
         int right=s.length()-1;
         while(left<right){
             char start=s.charAt(left);
             char end=s.charAt(right);
-
-            start=toLower(start);
-            end=toLower(end);
-
+            
             if(!isAlphanumeric(start)){
                 left++;
                 continue;
@@ -23,13 +21,6 @@ class Solution {
             right--;
         }
         return true;
-    }
-
-    static char toLower(char c){
-        if(c>='A' && c<='Z'){
-            return (char)(c+32);
-        }
-        return c;
     }
 
     static boolean isAlphanumeric(char c){
