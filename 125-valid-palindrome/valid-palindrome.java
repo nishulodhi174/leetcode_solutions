@@ -1,25 +1,38 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        if (s.isEmpty()) {
-        	return true;
-        }
-        String str = s.toLowerCase();
-        ArrayList<Character> list = new ArrayList<>();
-        for(int i=0 ; i<str.length() ; i++){
-            if('a' <= str.charAt(i) && str.charAt(i)<= 'z'){
-                list.add(str.charAt(i));
+        int left=0;
+        int right=s.length()-1;
+        while(left<right){
+            char start=s.charAt(left);
+            char end=s.charAt(right);
+
+            start=toLower(start);
+            end=toLower(end);
+
+            if(!isAlphanumeric(start)){
+                left++;
+                continue;
             }
-            if('0' <= str.charAt(i) && str.charAt(i)<= '9'){
-                list.add(str.charAt(i));
+            if(!isAlphanumeric(end)){
+                right--;
+                continue;
             }
-        }
-        for(int i=0 ; i<list.size() ; i++){
-            if(list.get(i) != list.get(list.size()-i-1)){
-                return false;
-            }else if(i > list.size()-i-1){
-                return true;
-            }
+
+            if(start!=end) return false;
+            left++;
+            right--;
         }
         return true;
+    }
+
+    static char toLower(char c){
+        if(c>='A' && c<='Z'){
+            return (char)(c+32);
+        }
+        return c;
+    }
+
+    static boolean isAlphanumeric(char c){
+        return (c>='a' && c<='z') || (c>='0' && c<='9');
     }
 }
