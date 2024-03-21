@@ -3,22 +3,22 @@ class Solution {
         if (s.isEmpty()) {
         	return true;
         }
-        int start = 0;
-        int last = s.length() - 1;
-        while(start <= last) {
-        	char currFirst = s.charAt(start);
-        	char currLast = s.charAt(last);
-        	if (!Character.isLetterOrDigit(currFirst )) {
-        		start++;
-        	} else if(!Character.isLetterOrDigit(currLast)) {
-        		last--;
-        	} else {
-        		if (Character.toLowerCase(currFirst) != Character.toLowerCase(currLast)) {
-        			return false;
-        		}
-        		start++;
-        		last--;
-        	}
+        String str = s.toLowerCase();
+        ArrayList<Character> list = new ArrayList<>();
+        for(int i=0 ; i<str.length() ; i++){
+            if('a' <= str.charAt(i) && str.charAt(i)<= 'z'){
+                list.add(str.charAt(i));
+            }
+            if('0' <= str.charAt(i) && str.charAt(i)<= '9'){
+                list.add(str.charAt(i));
+            }
+        }
+        for(int i=0 ; i<list.size() ; i++){
+            if(list.get(i) != list.get(list.size()-i-1)){
+                return false;
+            }else if(i > list.size()-i-1){
+                return true;
+            }
         }
         return true;
     }
