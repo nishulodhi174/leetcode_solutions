@@ -1,31 +1,18 @@
 class Solution {
     public boolean isValid(String s) {
-        LinkedList<String> list = new LinkedList<>();
-        for(int i=0; i<s.length(); i++){
-            if(s.charAt(i)=='(' || s.charAt(i)=='[' || s.charAt(i)=='{'){
-                list.push(Character.toString(s.charAt(i)));
+        Stack<Character> st= new Stack<>();
+        for(int i=0;i<s.length();i++){
+            char ch = s.charAt(i);
+            if(ch == '(' || ch =='{' || ch=='['){
+                st.push(ch);
+                continue;
             }
-            else if(s.charAt(i)==')' || s.charAt(i)=='}' || s.charAt(i)==']'){
-                if(list.isEmpty()){
-                    return false;
-                }
-                if(Objects.equals(list.peek(),"(") && s.charAt(i)==')'){
-                    list.pop();
-                }
-                else if(Objects.equals(list.peek(),"{") && s.charAt(i)=='}'){
-                    list.pop();
-                }
-                else if(Objects.equals(list.peek(),"[") && s.charAt(i)==']'){
-                    list.pop();
-                }
-                else{
-                    return false;
-                }
-            }
+            if(st.isEmpty()) return false;
+            if(ch==')' && st.peek()=='(') st.pop();
+           else if(ch=='}' && st.peek()=='{') st.pop();
+           else if(ch==']' && st.peek()=='[') st.pop(); 
+           else return false;
         }
-        if(list.isEmpty()){
-            return true;
-        }
-        return false;
+        return st.isEmpty();
     }
 }
