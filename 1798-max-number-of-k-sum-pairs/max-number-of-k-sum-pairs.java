@@ -1,3 +1,4 @@
+/*
 class Solution {
     public int maxOperations(int[] nums, int k) {
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -18,5 +19,28 @@ class Solution {
         return xount;
     }
 }
+*/
+
+class Solution {
+    public int maxOperations(int[] nums, int k) {
+        Arrays.sort(nums);
+
+        int s = 0, e = nums.length-1, xount = 0;
+
+        while(s<e){
+            if(nums[s]+ nums[e] > k){
+                e--;
+            }else if(nums[s]+ nums[e] < k){
+                s++;
+            }else{
+                xount++;
+                s++;
+                e--;
+            }
+        }
+        return xount;
+    }
+}
 
 // nums = [2,5,4,4,1,3,4,4,1,4,4,1,2,1,2,2,3,2,4,2]  k =3
+
